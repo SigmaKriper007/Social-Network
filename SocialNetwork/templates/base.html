@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'media/Frame 1000002425.svg' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'media/WIA.апельсин 1.svg' %}"> -->
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navitems">
+            
+            <img src="{% static 'media/wia.svg' %}" alt="">
+            
+            <a href="/">
+            
+            <img src="{% static 'media/frame1000002425.svg' %}" alt="img">
+            
+            </a>
+            <a href="/post">
+            <img src="{% static 'media/Frame 1000002427.svg' %}" alt="img">
+            </a>
+            <a href="/friends">
+            <img src="{% static 'media/Frame 1000002426.svg' %}" alt="img">
+            </a>
+            <a href="/">
+            <img src="{% static 'media/Frame 1000002428.svg' %}" alt="img">
+            </a>
+            <a href="/">
+            <img src="{% static 'media/Frame 1000002429.svg' %}" alt="img">
+            </a>
+            <button>
+            <img src="{% static 'media/Button.png' %}" alt="Вихід">
+            </button>
+            <img src="{% static 'media/Button.png' %}" alt="Вихід" height="50px" width="50px">
+        </div>
+    </div>
+    <div class="profile-container"> 
+        <h1>_</h1>
+        <div class="frame1">
+            <h1>_</h1>
+        </div>
+        <div class="frame2"> 
+            <h1>_</h1>
+        </div>
+        <div class="frame3"> 
+            <h1>_</h1>
+        </div>
+    </div>
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- JS -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

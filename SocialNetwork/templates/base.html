@@ -4,65 +4,81 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    {% block meta %}{% endblock %}
     <title>{% block title %}Мой сайт{% endblock %}</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'media/Frame 1000002425.svg' %}"> -->
-    <!-- <link rel="stylesheet" href="{% static 'media/WIA.апельсин 1.svg' %}"> -->
+    {% block links %}{% endblock %}
 </head>
 <body>
+{% block header %}
+    <header class="header">
+        <div class="container">
+            <img src="{% static 'images/wia.svg' %}" alt="wia" class="logo">
 
-<header>
-    <div class="container">
-        <div class="navitems">
-            
-            <img src="{% static 'media/wia.svg' %}" alt="">
-            
-            <a href="/">
-            
-            <img src="{% static 'media/frame1000002425.svg' %}" alt="img">
-            
+            <div class="navitems">
+                <a href="/">
+                    <img src="{% static 'images/frame1000002425.svg' %}" alt="Головна">
+                </a>
+
+                <a href="/post">
+                    <img src="{% static 'images/Frame 1000002427.svg' %}" alt="Мої публікації">
+                </a>
+
+                <a href="/friends">
+                    <img src="{% static 'images/Frame 1000002426.svg' %}" alt="Друзі">
+                </a>
+
+                <a href="/">
+                    <img src="{% static 'images/Frame 1000002428.svg' %}" alt="Чати">
+                </a>
+
+                <a href="/">
+                    <img src="{% static 'images/Frame 1000002429.svg' %}" alt="Налаштування">
+                </a>
+            </div>
+
+            <a href="">
+                <img src="{% static 'images/Button.svg' %}" alt="Вихід">
             </a>
-            <a href="/post">
-            <img src="{% static 'media/Frame 1000002427.svg' %}" alt="img">
-            </a>
-            <a href="/friends">
-            <img src="{% static 'media/Frame 1000002426.svg' %}" alt="img">
-            </a>
-            <a href="/">
-            <img src="{% static 'media/Frame 1000002428.svg' %}" alt="img">
-            </a>
-            <a href="/">
-            <img src="{% static 'media/Frame 1000002429.svg' %}" alt="img">
-            </a>
-            <button>
-            <img src="{% static 'media/Button.png' %}" alt="Вихід">
-            </button>
-            <img src="{% static 'media/Button.png' %}" alt="Вихід" height="50px" width="50px">
         </div>
-    </div>
-    <div class="profile-container"> 
-        <h1>_</h1>
-        <div class="frame1">
-            <h1>_</h1>
+
+        <div class="profile-container">
+            <div class="frame1">
+                <img src="{% static 'images/Frame.svg' %}" alt="Профіль">
+            </div>
+
+            {% block frame2 %}
+            <div class="frame2">
+                <div class="request-container">
+                    <div class="request-icon-container">
+                        <img src="{% static 'images/peoples_frame.svg' %}" alt="">
+                        <h1>Запити</h1>
+                    </div>
+                    <button class="frame-btn">Дивитись всі</button>
+                </div>
+            </div>
+            {% endblock %}
+
+            {% block frame3 %}
+            <div class="frame3">
+                <div class="alert-container">
+                    <div class="alert-icon-container">
+                        <img src="{% static 'images/chat_frame.svg' %}" alt="">
+                        <h1>Повідомлення</h1>
+                    </div>
+                    <button class="alert-btn">Дивитись всі</button>
+                </div>
+            </div>
+            {% endblock %}
         </div>
-        <div class="frame2"> 
-            <h1>_</h1>
-        </div>
-        <div class="frame3"> 
-            <h1>_</h1>
-        </div>
-    </div>
-</header>
+    </header>
+{% endblock %}
 
 <main>
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
 </main>
 
-<!-- JS -->
 <script src="{% static 'js/script.js' %}"></script>
-
 </body>
 </html>

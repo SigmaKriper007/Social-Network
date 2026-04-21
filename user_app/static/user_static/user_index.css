@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* общие стили страницы */
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+}
+
+/* шапка */
+.auth-header {
+    width: 100vw;
+    height: 10vh; /* высота шапки */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* логотип */
+.auth-logo img {
+    width: 10vw;
+}
+
+/* основной блок */
+.auth-main {
+    width: 100vw;
+    height: 90vh;
+
+    /* фон + картинка справа */
+    background-color: #E9E5EE;
+    background-image: url("../images/Container.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 35vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* контейнер с формой */
+.auth-content {
+    width: 70vw;
+    display: flex;
+}
+
+/* карточка формы */
+.auth-card {
+    width: 30vw;
+    background: #ffffff;
+    border-radius: 2vw;
+    padding: 3vh 2vw;
+}
+
+/* переключатели регистрация / авторизация */
+.auth-tabs {
+    display: flex;
+    gap: 2vw;
+    margin-bottom: 3vh;
+}
+
+/* обычная вкладка */
+.tab {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #A6A0AE;
+    cursor: pointer;
+}
+
+/* активная вкладка */
+/* .tab.active {
+    color: #1F1B24;
+    border-bottom: 0.2vh solid #1F1B24;
+} */
+
+/* заголовок */
+.auth-title {
+    text-align: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin-bottom: 3vh;
+}
+
+/* форма */
+.auth-form p {
+    margin-bottom: 2vh;
+}
+
+/* подписи к полям */
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5vh;
+    font-size: 1vw;
+}
+
+/* поля ввода */
+.auth-form input {
+    width: 100%;
+    height: 5vh;
+    border: 0.1vw solid #D9D4DD;
+    border-radius: 1vw;
+    padding: 0 1vw;
+}
+
+/* кнопка */
+.auth-form button {
+    width: 100%;
+    height: 6vh;
+    margin-top: 1vh;
+    border: none;
+    border-radius: 3vw;
+    background: #6C4A68;
+    color: white;
+    font-size: 1.2vw;
+    cursor: pointer;
+}
+
+/* эффект при наведении */
+.auth-form button:hover {
+    opacity: 0.9;
+}

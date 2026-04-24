@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
 
 User = get_user_model()
 
@@ -27,5 +28,37 @@ class RegistrationForm(forms.ModelForm):
         confirm_password = clean_data.get('confirm_password')
         if password != confirm_password:
             self.add_error("password", "Password did'nt match")
-            self.add_error("confirm_password", "Password did'nt match")
+            self.add_error("confirm_password", "Password didn't match")
         return clean_data
+
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        label='Електронна пошта',
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'you@example.com',
+            'class': 'input'
+        })
+    )
+
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Введи пароль',
+            'class': 'input'
+        })
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        email = cleaned_data.get('email')
+        password = cleaned_data.get('password')
+
+        user = authenticate(username=email, password=password)
+
+        if not user:
+            raise forms.ValidationError('Невірний email або пароль')
+
+        self.user = user
+        return cleaned_data

@@ -11,7 +11,7 @@
     {% endblock %}
 </head>
 <body>
-    <section class="auth-page">
+    <div class="auth-page">
         <header class="auth-header">
             <a href="/" class="auth-logo">
                 <img src="{% static 'user_static/images/wia.svg' %}" alt="World IT">
@@ -22,8 +22,8 @@
             <div class="auth-content">
                 <div class="auth-card">
                     <div class="auth-tabs">
-                        <a href="#" class="tab active">Реєстрація</a>
-                        <a href="#" class="tab">Авторизація</a>
+                        <a href="#" class="tab active" data-url="{% url 'form-register' %}">Реєстрація</a>
+                        <a href="#" class="tab" data-url="{% url 'form-login' %}">Авторизація</a>
                     </div>
 
                     <h2 class="auth-title">Приєднуйся до World IT</h2>
@@ -40,6 +40,8 @@
                 </div>
             </div>
         </main>
-    </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'user_static/user_index.js' %}"></script>
 </body>
 </html>

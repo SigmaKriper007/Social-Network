@@ -25,17 +25,23 @@ class RegisterView(View):
         return JsonResponse({
             'error': form.errors.get_json_data()
         })
+
+from django.urls import reverse
+
 class LoginView(View):
     def post(self, request):
         login_form = LoginForm(request.POST)
-        register_form = RegistrationForm() 
 
         if login_form.is_valid():
             login(request, login_form.user)
-            return redirect('home')  
-        return render(request, 'user_app/particles/form_login', {
-            'login_form': login_form,
-            'register_form': register_form
+
+            return JsonResponse({
+                "message": "Login Success",
+                "redirect_url": reverse("home")
+            })
+
+        return JsonResponse({
+            "error": login_form.errors.get_json_data()
         })
     
 class RegisterFormView(View):
@@ -50,3 +56,8 @@ class LoginFormView(View):
         return render(request, 'user_app/particles/form_login.html', {
             'login_form': LoginForm()
         })
+    
+
+class ConfirmEmailFormView(View):
+    def get(self, request):
+        return render(request, 'user_app/particles/form_confirm_email.html')

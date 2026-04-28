@@ -79,6 +79,9 @@ body {
     display: flex;
     gap: 2vw;
     margin-bottom: 3vh;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .tab {
@@ -157,4 +160,75 @@ body {
     width: 100%;
     height: 2px;
     background-color: #1F1B24;
+}
+
+.confirm-card {
+    width: 487px;
+    min-height: 421px;
+    padding: 44px 32px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.confirm-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 36px;
+}
+
+.confirm-text {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1F1B24;
+    line-height: 1.5;
+}
+
+.confirm-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.confirm-inputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.confirm-inputs input {
+    width: 52px;
+    height: 44px;
+    border: 1px solid #D9D4DD;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.confirm-btn {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 28px;
+    background: #6C4A68;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    width: 100%;
+    border: none;
+    background: none;
+    color: #6C4A68;
+    font-size: 16px;
+    cursor: pointer;
 }

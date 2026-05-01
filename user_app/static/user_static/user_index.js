@@ -1,4 +1,4 @@
-// переключение между регистрацией / логином / назад
+// переключение форм
 $(document).on("click", ".tab, .back-btn", function(e) {
     e.preventDefault();
 
@@ -6,6 +6,15 @@ $(document).on("click", ".tab, .back-btn", function(e) {
         $(".auth-card").replaceWith(data);
     });
 });
+
+
+// ✅ нормальный CSRF (через cookie)
+function getCSRFToken() {
+    return document.cookie
+        .split('; ')
+        .find(row => row.startsWith('csrftoken='))
+        ?.split('=')[1];
+}
 
 
 // регистрация + логин
@@ -21,14 +30,36 @@ $(document).on("submit", ".auth-form", function(e) {
 
         success: function(response) {
 
-            // регистрация успешна → confirm email
+            // 🔥 РЕГИСТРАЦИЯ
             if (response.message === "User Created") {
-                $.get("/user/form/confirm-email/", function(data) {
-                    $(".auth-card").replaceWith(data);
+
+                let email = form.find('input[name="email"]').val();
+
+                fetch("/user/send-code/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": getCSRFToken()
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(res => res.json())
+                .then(data => {
+
+                    // 👉 после отправки кода — показываем confirm
+                    return fetch("/user/form/confirm-email/");
+                })
+                .then(res => res.text())
+                .then(html => {
+                    document.querySelector(".auth-card").outerHTML = html;
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Ошибка отправки кода");
                 });
             }
 
-            // логин успешен → на главную
+            // 🔥 ЛОГИН
             if (response.message === "Login Success") {
                 window.location.href = response.redirect_url;
             }
@@ -43,11 +74,39 @@ $(document).on("submit", ".auth-form", function(e) {
 });
 
 
-// confirm email → авторизация
+// 🔥 confirm email → проверка кода
 $(document).on("submit", ".confirm-form", function(e) {
     e.preventDefault();
 
-    $.get("/user/form/login/", function(data) {
-        $(".auth-card").replaceWith(data);
+    let inputs = document.querySelectorAll(".confirm-inputs input");
+
+    let code = "";
+    inputs.forEach(input => code += input.value);
+
+    fetch("/user/verify-code/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken()
+        },
+        body: JSON.stringify({ code: code })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.message === "Verified") {
+            return fetch("/user/form/login/");
+        }
+
+        if (data.error) {
+            throw new Error("Неверный код");
+        }
+    })
+    .then(res => res.text())
+    .then(html => {
+        document.querySelector(".auth-card").outerHTML = html;
+    })
+    .catch(err => {
+        alert(err.message);
     });
 });
